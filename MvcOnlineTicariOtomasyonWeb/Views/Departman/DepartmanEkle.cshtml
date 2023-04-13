@@ -1,0 +1,17 @@
+﻿@model MvcOnlineTicariOtomasyonWeb.Models.Siniflar.Departman
+@{
+    ViewBag.Title = "DepartmanEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+<h2>Yeni Departman Sayfası</h2>
+<br />
+<form class="form-group" method="post">
+    @Html.LabelFor(x => x.Departmanid)
+    @Html.TextBoxFor(x => x.DepartmanAd, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+    @* veri tabanına eklenecek departman adını textbox içerine yazıyoruz kaydete basınca departmanlara yonlenıyoruz ve verı tabanına kaydetme işlemi gerçekleşiyor departmancontroller sayesınde  *@
+</form>
+
