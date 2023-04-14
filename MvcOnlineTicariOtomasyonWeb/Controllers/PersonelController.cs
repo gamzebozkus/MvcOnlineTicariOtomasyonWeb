@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -33,6 +34,14 @@ namespace MvcOnlineTicariOtomasyonWeb.Controllers
         [HttpPost]
         public ActionResult PersonelEkle(Personel p)
         {
+            if (Request.Files.Count > 0)
+            {
+                string dosyaadi = Path.GetFileName(Request.Files[0].FileName);
+                string uzanti = Path.GetExtension(Request.Files[0].FileName);
+                string yol = "~/Image/" + dosyaadi + uzanti;
+                Request.Files[0].SaveAs(Server.MapPath(yol));
+                p.PersonelGorsel = "/Image/"+ dosyaadi + uzanti;
+            }
             c.Personels.Add(p);
             c.SaveChanges();
             return RedirectToAction("Index");
@@ -49,13 +58,33 @@ namespace MvcOnlineTicariOtomasyonWeb.Controllers
             var prs=c.Personels.Find(id);
             return View("PersonelGetir", prs);
         }
-        public ActionResult PersonelGuncelle(Personel p)
+        public ActionResult PersonelGuncelle(Personel p,HttpPostedFileBase PersonelGorsel)
         {
             var prsn=c.Personels.Find(p.Personelid);
             prsn.PersonelAd = p.PersonelAd;
             prsn.PeresonelSoyad = p.PeresonelSoyad;
-            prsn.PersonelGorsel = p.PersonelGorsel;
+            //prsn.PersonelGorsel = p.PersonelGorsel;
             prsn.Departmanid = p.Departmanid;
+
+           if (ModelState.IsValid)
+
+            {
+
+
+
+                if (PersonelGorsel!=null)
+
+                {
+
+                    string dosyaadi = Path.GetFileName(PersonelGorsel.FileName);
+                    string yol = "/Image/" + dosyaadi;
+                    PersonelGorsel.SaveAs(Server.MapPath(yol));
+              prsn.PersonelGorsel = yol;
+
+                }
+
+            }
+           
             c.SaveChanges();
             return RedirectToAction("Index");
 
