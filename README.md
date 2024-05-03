@@ -8,7 +8,7 @@ Online Ticari Otomasyon, işletme sahibi ve mü̧sterilerin iş süreçlerinin o
 
 **Frontend:** Html , Css , Bootstraap , Javascript , Jquery kullanıldı.
 
-**Baceknd:** Asp.Net MVC 5 Mimarisi , C# , Entity Framework , Code First yaklaşımı kullanıldı. 
+**Backend:** Asp.Net MVC 5 Mimarisi , C# , Entity Framework , Code First yaklaşımı kullanıldı. 
 
 **Veritabanı:** MSSQL 
 
